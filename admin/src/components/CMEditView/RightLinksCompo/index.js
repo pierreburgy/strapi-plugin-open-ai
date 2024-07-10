@@ -131,7 +131,7 @@ const RightLinksCompo = () => {
       completionAPI
         .create({ model, messages, temperature, maxTokens })
         .then((data) => {
-          setCompletion(data?.choices[0]?.text.trim());
+          setCompletion(data?.choices[0]?.message.content.trim());
           setFinishReason(data?.choices[0]?.finish_reason);
         })
         .finally(() => {
@@ -261,11 +261,11 @@ const RightLinksCompo = () => {
                             hint={
                               finishReason && completion
                                 ? `${formatMessage({
-                                    id: getTrad(
-                                      'Modal.tabs.prompt.finish-reason.text'
-                                    ),
-                                    defaultMessage: 'Finish reason:',
-                                  })} ${finishReason}`
+                                  id: getTrad(
+                                    'Modal.tabs.prompt.finish-reason.text'
+                                  ),
+                                  defaultMessage: 'Finish reason:',
+                                })} ${finishReason}`
                                 : undefined
                             }
                             onChange={(e) => setCompletion(e.target.value)}
@@ -403,14 +403,14 @@ const RightLinksCompo = () => {
                       maxTokens: defaultSettings.maxTokens,
                     }) !==
                       JSON.stringify({ model, temperature, maxTokens }) && (
-                      <Button
-                        variant="secondary"
-                        startIcon={<Lock />}
-                        onClick={() => handleSaveDefaultSettings()}
-                      >
-                        {saveModelText}
-                      </Button>
-                    )}
+                        <Button
+                          variant="secondary"
+                          startIcon={<Lock />}
+                          onClick={() => handleSaveDefaultSettings()}
+                        >
+                          {saveModelText}
+                        </Button>
+                      )}
 
                     {completion && (
                       <Button
